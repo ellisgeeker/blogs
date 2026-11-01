@@ -1,6 +1,8 @@
-# ELLIS / LAB — personal AI systems research blog
+# ELLIS / LAB
 
-A Next.js 16 / React 19 / TypeScript / MDX starter with a procedural cinematic flow hero and an interactive agent trace experiment.
+A bilingual (English / Chinese) personal blog about AI systems research: agent runtimes, decision reliability, and distributed execution.
+
+Built with Next.js 16, React 19, TypeScript, MDX, Sass, and next-intl.
 
 ## Quick start
 
@@ -9,50 +11,105 @@ npm install
 npm run dev
 ```
 
-Visit http://localhost:3000. pnpm works too: `pnpm install && pnpm dev`.
+Visit http://localhost:3000 (English) or http://localhost:3000/zh (Chinese). Requires Node.js 20.9 or later; `.nvmrc` pins the version used in CI.
 
 ## Scripts
 
-| Command             | What it does                               |
-| ------------------- | ------------------------------------------ |
-| `npm run dev`       | Next.js dev server                         |
-| `npm run build`     | Production build                           |
-| `npm run start`     | Serve the production build                 |
-| `npm run lint`      | ESLint (Next core-web-vitals + TypeScript) |
-| `npm run format`    | Format with Prettier                       |
-| `npm run typecheck` | `tsc --noEmit`                             |
-| `npm run check`     | typecheck + lint + Prettier check          |
+| Command                | What it does                                                 |
+| ---------------------- | ------------------------------------------------------------ |
+| `npm run dev`          | Next.js dev server                                           |
+| `npm run build`        | Production build                                             |
+| `npm run start`        | Serve the production build                                   |
+| `npm run lint`         | ESLint (Next core-web-vitals + TypeScript)                   |
+| `npm run lint:fix`     | ESLint with auto-fix                                         |
+| `npm run format`       | Format with Prettier                                         |
+| `npm run format:check` | Check formatting without writing                             |
+| `npm run typecheck`    | `tsc --noEmit`                                               |
+| `npm run i18n:lint`    | Check translation files with eloqnt                          |
+| `npm run check`        | typecheck + lint + i18n:lint + format:check (also run in CI) |
+| `npm run icons`        | Regenerate `favicon.ico` and `apple-icon.png` from SVG       |
 
 ## Routes
 
-- `/` — cinematic hero and research landing page
+Every route exists in both languages. English has no prefix; Chinese is under `/zh`.
+
+- `/` — hero and research landing page
 - `/research` — research themes
 - `/writing` — writing index
 - `/writing/agent-runtime` — example MDX article
 - `/experiments` — interactive (illustrative) trace explorer
-- `/projects` — clearly marked project concepts
+- `/projects` — project concepts
 
-## Customize first
+## Where things live
 
-1. Update name, description, and metadata in `src/app/layout.tsx`.
-2. Replace the example copy and research entries in `src/lib/content.ts` with your real writing.
-3. Update the GitHub link in `src/components/site-header.tsx` (currently points to github.com, not a personal profile).
-4. Edit color and type tokens in `src/styles/_tokens.scss`, layout styles in `src/styles/globals.scss`.
-5. Edit cinematic background in `src/components/flow-canvas.tsx`.
-6. Write new articles as `src/content/writing/<slug>/{en,zh}.mdx`, add a route under `src/app/[locale]/writing/<slug>/page.tsx`, and add it to the listing.
+| To change                                       | Edit                                                      |
+| ----------------------------------------------- | --------------------------------------------------------- |
+| Site title, description, all page copy          | `messages/en.json`, `messages/zh.json`                    |
+| Research and project entries (ids, links, tags) | `src/lib/content.ts` (their text is in `messages/*.json`) |
+| Colors, fonts, spacing                          | `src/styles/_tokens.scss`                                 |
+| Layout and component styles                     | `src/styles/globals.scss`                                 |
+| Hero animation                                  | `src/components/flow-canvas.tsx`                          |
+| Header logo and links                           | `src/components/site-header.tsx`                          |
+| Site icons                                      | `src/app/icon.svg`, `scripts/icons/apple-icon.svg`        |
+
+## Writing an article
+
+1. Add the body in both languages: `src/content/writing/<slug>/en.mdx` and `zh.mdx`.
+2. Add a route at `src/app/[locale]/writing/<slug>/page.tsx` (copy `agent-runtime/page.tsx`).
+3. Add the article's title, lede, and metadata under `article` in `messages/*.json`, and list it on `src/app/[locale]/writing/page.tsx`.
+
+Internal links in MDX (`[text](/experiments)`) keep the reader's current language automatically.
+
+### Code blocks
+
+Code is highlighted at build time with [Shiki](https://shiki.style) through `rehype-pretty-code`, so it adds no client JavaScript. Each block gets a copy button.
+
+````md
+```ts title="runtime/authorize.ts" {6-8} showLineNumbers
+// ...
+```
+````
+
+- `title="..."` shows a filename above the block
+- `{6-8}` highlights lines 6–8
+- `showLineNumbers` adds line numbers
+
+The theme is set in `next.config.mjs`. Turbopack needs MDX plugins named as strings with serializable options.
 
 ## Internationalization
 
-English (`/`) and Chinese (`/zh`) are handled by [next-intl](https://next-intl.dev). UI copy lives in `messages/en.json` and `messages/zh.json`; English is the source locale. The globe button in the header switches language and keeps the current path.
+Routing and copy are handled by [next-intl](https://next-intl.dev). English is the source locale. The globe button in the header switches language, keeps the current page and scroll position, and crossfades the content using React's `<ViewTransition>`. The chosen language is remembered in the `NEXT_LOCALE` cookie.
 
-`npm run i18n:lint` runs [eloqnt](https://cli.eloqnt.dev/docs) to catch missing keys, unused keys, and mismatched ICU arguments between locales. `npx eloqnt translate` can fill gaps, but it sends strings to eloqnt's hosted engine and needs a login.
+Locale routing runs in `src/proxy.ts` (Next.js 16 renamed `middleware.ts` to `proxy.ts`).
 
-## Visual + performance notes
+`npm run i18n:lint` runs [eloqnt](https://cli.eloqnt.dev/docs) to catch missing keys, unused keys, and mismatched ICU arguments between locales. `npx eloqnt translate` can fill missing translations, but it sends strings to eloqnt's hosted engine and needs a login.
 
-The hero is original procedural artwork created with a 2D canvas and a hand-shaped flow field; it is **not** the Memori background or an exact recreation. It avoids video downloads and heavyweight WebGL dependencies. Canvas DPR is capped; animation is reduced for `prefers-reduced-motion`; rendering is paused outside the viewport. A future WebGL shader version can be introduced once the art direction is approved.
+## Icons
 
-This starter uses locally available system fonts for zero font-network dependency. For production, add your chosen licensed fonts and optimize images. Add a domain and OG image, content taxonomy, RSS, sitemap, analytics, and automated accessibility audits before launch.
+`src/app/icon.svg` is a simplified mark that stays legible at 16px. `scripts/icons/apple-icon.svg` is the full mark for the iOS home screen. After editing either, run `npm run icons` to regenerate `src/app/favicon.ico` (16/32/48) and `src/app/apple-icon.png` (180). Next.js adds the `<link>` tags automatically.
+
+## Visual and performance notes
+
+The hero is procedural artwork drawn on a 2D canvas, with no video or WebGL dependency. Canvas resolution is capped at 2× DPR, rendering pauses when the hero is off screen, and animation stops when the system "reduce motion" setting is on.
+
+The site uses system fonts, so it makes no font network requests.
 
 ## Deployment
 
-Deploy on any Node-compatible host using `pnpm build && pnpm start`. No API keys needed.
+```bash
+npm ci
+npm run build
+npm run start
+```
+
+Runs on any Node.js host, or deploy to Vercel. No API keys or environment variables are needed.
+
+## Troubleshooting
+
+**`Turbopack is not supported on this platform` on Apple Silicon.** macOS rejected the unsigned native SWC binary, so Next.js fell back to WASM. Re-sign it after installing dependencies:
+
+```bash
+codesign --force --sign - node_modules/@next/swc-darwin-arm64/next-swc.darwin-arm64.node
+```
+
+Or run the dev server with Webpack: `npx next dev --webpack`.

@@ -65,7 +65,12 @@ export async function SiteHeader() {
         </nav>
         <div className="header-actions">
           <LocaleSwitcher />
-          <a className="header-link" href="https://github.com" target="_blank" rel="noreferrer">
+          <a
+            className="header-link"
+            href="https://github.com/ellisgeeker"
+            target="_blank"
+            rel="noreferrer"
+          >
             GitHub <Arrow kind="ne" />
           </a>
         </div>
