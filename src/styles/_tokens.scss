@@ -1,0 +1,68 @@
+:root {
+  --bg: #071113;
+  --bg-deep: #030a0d;
+  --surface: #0d191c;
+  --surface-hover: #102225;
+  --surface-card: #122428;
+  --surface-card-end: #0a1518;
+  --surface-code: #0d2024;
+
+  --line: #283638;
+  --line-soft: #2e4342;
+  --line-mid: #33514f;
+  --line-strong: #49615d;
+  --line-accent: #829b97;
+
+  --text: #eeeae0;
+  --text-bright: #fff;
+  --text-em: #bcd7d2;
+  --text-lede: #d2dbd8;
+  --text-nav: #d0d9d6;
+  --text-muted: #9aaead;
+  --text-dim: #75908c;
+  --text-label: #8fbcb6;
+  --text-faint: #657e7d;
+
+  --teal: #a5cfca;
+  --gold: #c6a879;
+  --live: #a8d5c9;
+  --live-glow: #92dfc1;
+  --ink: #121a1b;
+  --paper: #f1eee7;
+  --paper-mint: #d8e6db;
+  --focus: #b0dbd1;
+  --selection: #8fb9b1;
+  --link: #d7f2e8;
+
+  --glass: rgb(220 231 231 / 16%);
+  --glass-strong: rgb(220 231 231 / 24%);
+  --glass-border: rgb(236 241 239 / 24%);
+  --orbit: rgb(178 214 207 / 22%);
+  --glow-teal: rgb(127 181 174 / 33%);
+
+  --hero-bg: radial-gradient(ellipse at 43% 66%, #174248 0, #0b2228 37%, var(--bg-deep) 79%);
+  --hero-aura:
+    radial-gradient(ellipse at 51% 49%, rgb(154 99 42 / 16%), transparent 33%),
+    radial-gradient(ellipse at 75% 45%, rgb(31 104 106 / 24%), transparent 47%);
+  --hero-vignette:
+    linear-gradient(90deg, rgb(3 16 17 / 50%) 0%, transparent 60%),
+    linear-gradient(
+      180deg,
+      rgb(1 9 11 / 38%) 0%,
+      transparent 27%,
+      transparent 62%,
+      rgb(6 19 21 / 68%) 100%
+    );
+  --cta-bg: radial-gradient(ellipse at 86% 47%, #1f4544, #0d2529 38%, #102023 75%);
+  --trace-bg: radial-gradient(ellipse at 50% 0%, #16373a, #091619 65%);
+  --card-bg: linear-gradient(145deg, var(--surface-card), var(--surface-card-end));
+
+  --page-max: 1512px;
+  --gutter: clamp(24px, 7vw, 110px);
+  --header-gutter: clamp(24px, 5.5vw, 90px);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --radius: 3px;
+  --ease: 0.2s;
+}

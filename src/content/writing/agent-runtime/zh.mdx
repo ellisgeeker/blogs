@@ -1,0 +1,58 @@
+## 从模型输出到系统行为
+
+智能体运行时负责协调模型决策、工具、状态与恢复。模型可以提出动作，但执行规则应由运行时掌握：授权、重试上限、超时，以及可接受副作用的边界。
+
+这个区分很重要，因为一次生成出来的工具调用，并不等于一条值得信任的命令。
+
+## 一个小型执行契约
+
+一个有用的心智模型，是把 _提案_、_校验_ 和 _执行_ 分开：
+
+```text
+用户请求
+    ↓
+模型提出动作
+    ↓
+策略 + 上下文校验
+    ↓
+允许 / 拒绝 / 人工
+    ↓
+工具执行（仅在允许时）
+    ↓
+结果 + 持久状态 / 轨迹
+```
+
+策略决策可以是确定性的、模型辅助的，或需要人来判断。无论机制如何，最终的授权边界都应保持显式、可观测。
+
+落到代码里，这条边界可以小到只是一个函数，所有工具调用都必须经过它：
+
+```ts title="runtime/authorize.ts" {6-8}
+type Decision = 'ALLOW' | 'DENY' | 'HUMAN';
+
+export async function runTool(call: ToolCall, ctx: Context) {
+  const decision: Decision = await policy.evaluate(call, ctx);
+
+  if (decision !== 'ALLOW') {
+    return trace.record(call, { decision, executed: false });
+  }
+
+  const result = await call.execute({ signal: ctx.signal, timeoutMs: 30_000 });
+  return trace.record(call, { decision, executed: true, result });
+}
+```
+
+## 可靠的 harness 需要什么
+
+- **执行预算**：限制时间、工具调用次数和重复工作。
+- **幂等控制**：针对失败后可能被重试的工具。
+- **取消与超时传播**：贯穿并发的工具调用。
+- **检查点与恢复**：配有清楚记录的恢复语义。
+- **轨迹与证据**：把提出的动作与观察到的结果连起来。
+
+## 试试执行轨迹
+
+[交互式轨迹浏览器](/experiments) 会走完一次示意执行，从接收任务到创建检查点。它是可视化演示，不是真正运行中的自主系统。
+
+## 开放问题
+
+校验器应如何表达不确定性？什么时候必须人工批准？系统如何识别重复出现的失败，而不只是不断重试？这些问题值得用实验和可衡量的标准来回答，而不只是听起来很有把握的文字。

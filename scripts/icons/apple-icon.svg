@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="56%" r="70%">
+      <stop offset="0" stop-color="#174248" />
+      <stop offset="0.5" stop-color="#0b2228" />
+      <stop offset="1" stop-color="#030a0d" />
+    </radialGradient>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ffca7e" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#f3aa5d" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="180" height="180" fill="url(#bg)" />
+  <g transform="translate(18 18) scale(4)">
+    <circle cx="18" cy="18" r="16.5" stroke="#9ec9c3" stroke-width="0.6" />
+    <circle cx="18" cy="18" r="10.2" stroke="#9ec9c3" stroke-width="0.45" opacity="0.4" />
+    <ellipse cx="18" cy="18" rx="16" ry="6.2" stroke="#c6a879" stroke-width="0.55" opacity="0.85" transform="rotate(-32 18 18)" />
+    <ellipse cx="18" cy="18" rx="16" ry="6.2" stroke="#7eb8b4" stroke-width="0.45" opacity="0.5" transform="rotate(52 18 18)" />
+    <path d="M18 3.8v4.2M18 28v4.2M3.8 18h4.2M28 18h4.2" stroke="#d7ece7" stroke-width="0.6" stroke-linecap="round" />
+    <path d="M12.2 11.1 23.8 13.2 21.2 24.4 11.8 22.1Z" stroke="#e8dfc8" stroke-width="0.4" opacity="0.6" />
+    <circle cx="12.2" cy="11.1" r="1.1" fill="#f7f3e9" />
+    <circle cx="23.8" cy="13.2" r="1.1" fill="#f7f3e9" />
+    <circle cx="21.2" cy="24.4" r="1.1" fill="#f7f3e9" />
+    <circle cx="11.8" cy="22.1" r="1.1" fill="#f7f3e9" />
+    <circle cx="18" cy="18" r="6" fill="url(#core)" />
+    <circle cx="18" cy="18" r="2.2" fill="#e8b36a" />
+  </g>
+</svg>

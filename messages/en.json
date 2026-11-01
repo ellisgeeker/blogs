@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "title": "ELLIS / LAB — Engineering Reliable Intelligence",
+    "titleTemplate": "%s — ELLIS / LAB",
+    "description": "Independent research notes on AI agent runtimes, decision reliability, and distributed systems."
+  },
+  "nav": {
+    "home": "Ellis Lab homepage",
+    "research": "Research",
+    "writing": "Writing",
+    "experiments": "Experiments",
+    "projects": "Projects",
+    "main": "Main navigation",
+    "language": "Language"
+  },
+  "locale": {
+    "en": "English",
+    "zh": "中文"
+  },
+  "footer": {
+    "copyright": "© {year} ELLIS / LAB",
+    "tagline": "Independent research in intelligent systems.",
+    "note": "Designed for curiosity, built for clarity."
+  },
+  "home": {
+    "eyebrow": "INDEPENDENT AI SYSTEMS RESEARCH",
+    "title": "Engineering",
+    "titleEm": "Reliable Intelligence.",
+    "lede": "Exploring the systems beneath intelligent agents — from decision boundaries to resilient runtimes.",
+    "exploreResearch": "Explore research",
+    "readJournal": "Read the journal",
+    "est": "EST. 2026  /  FIELD NOTES FROM THE FRONTIER",
+    "scroll": "SCROLL TO EXPLORE",
+    "mission": "THE MISSION",
+    "introTitle": "Build intelligence",
+    "introTitleLine": "that can be",
+    "introTitleEm": "trusted.",
+    "introP1": "AI is moving from answering questions to taking actions. The interesting engineering problems now live in orchestration, safety boundaries, state, and reliability.",
+    "introP2": "This is a working notebook for exploring those systems in public.",
+    "aboutResearch": "About this research",
+    "investigations": "SELECTED INVESTIGATIONS",
+    "directions": "Research",
+    "directionsEm": "directions",
+    "allResearch": "All research",
+    "notebook": "THE LAB NOTEBOOK",
+    "ctaEyebrow": "THINK IN SYSTEMS. BUILD IN PUBLIC.",
+    "ctaTitle": "Ideas are hypotheses.",
+    "ctaTitleEm": "Experiments are evidence.",
+    "ctaBody": "Technical essays, architectural breakdowns, and interactive explorations of agent systems.",
+    "enterExperiments": "Enter experiments"
+  },
+  "researchPage": {
+    "metaTitle": "Research",
+    "eyebrow": "RESEARCH / 001",
+    "title": "Research",
+    "titleEm": "directions.",
+    "lede": "Questions about how autonomous systems decide, execute, remember, and recover.",
+    "note": "These areas represent ongoing interests. Only published entries link to completed articles; other entries are research themes, not claims of finished work."
+  },
+  "writingPage": {
+    "metaTitle": "Writing",
+    "eyebrow": "WRITING / 002",
+    "title": "The research",
+    "titleEm": "journal.",
+    "lede": "Engineering notes, design tradeoffs, and ideas under test.",
+    "sampleTopic": "AI AGENT SYSTEMS · SAMPLE ARTICLE",
+    "sampleTitle": "Building Reliable Agent Harnesses",
+    "sampleDescription": "An introduction to the runtime contracts behind agent reliability.",
+    "readTime": "8 MIN READ"
+  },
+  "experimentsPage": {
+    "metaTitle": "Experiments",
+    "eyebrow": "EXPERIMENTS / 003",
+    "title": "Make systems",
+    "titleEm": "visible.",
+    "lede": "Explore the state transitions behind an agent execution. This first demo uses a fixed illustrative trace, not a connected LLM."
+  },
+  "projectsPage": {
+    "metaTitle": "Projects",
+    "eyebrow": "PROJECTS / 004",
+    "title": "Systems in",
+    "titleEm": "progress.",
+    "lede": "Selected concepts and experiments — clearly distinguished from published or released software."
+  },
+  "researchItems": {
+    "agent-runtime": {
+      "topic": "AGENT RUNTIME",
+      "title": "Building Reliable Agent Harnesses",
+      "description": "Execution boundaries, checkpoints, tool orchestration, and system-level failure recovery.",
+      "status": "FIELD NOTES"
+    },
+    "decision-reliability": {
+      "topic": "DECISION SYSTEMS",
+      "title": "Decision Reliability for Autonomous Agents",
+      "description": "Verifiers, selective prediction, and auditable allow / deny / human decisions.",
+      "status": "RESEARCH AREA"
+    },
+    "tool-scheduling": {
+      "topic": "DISTRIBUTED EXECUTION",
+      "title": "Parallel Tool Calls, Without Chaos",
+      "description": "Concurrency contracts, cancellation, idempotency, and observability.",
+      "status": "RESEARCH AREA"
+    }
+  },
+  "projectItems": {
+    "decisionkit": {
+      "label": "01 / RUNTIME",
+      "title": "DecisionKit",
+      "body": "A reliability layer for agent decisions, with explicit policy gates and a human-review path.",
+      "state": "CONCEPT / IN PROGRESS"
+    },
+    "code-review": {
+      "label": "02 / TOOLING",
+      "title": "Code Review Agent",
+      "body": "Researching contextual code review, tool execution, and evidence-based findings.",
+      "state": "EXPERIMENT"
+    },
+    "trace-explorer": {
+      "label": "03 / VISUALIZATION",
+      "title": "Agent Trace Explorer",
+      "body": "An interactive concept for exploring agent execution timelines and decision traces.",
+      "state": "PROPOSED"
+    }
+  },
+  "trace": {
+    "head": "TRACE EXPLORER / SIMULATED RUN",
+    "stepOf": "STEP {current} / {total}",
+    "event": "{phase} / EVENT {n}",
+    "previous": "Previous",
+    "next": "Next step",
+    "replay": "Replay trace",
+    "steps": {
+      "receive": {
+        "name": "Receive task",
+        "phase": "INPUT",
+        "body": "A request enters the agent runtime with a task identifier and execution budget."
+      },
+      "plan": {
+        "name": "Plan execution",
+        "phase": "MODEL",
+        "body": "The model proposes a tool action; this is a proposal, not automatic authorization."
+      },
+      "policy": {
+        "name": "Policy check",
+        "phase": "VERIFIER",
+        "body": "The policy layer returns ALLOW, DENY, or HUMAN based on the action and context."
+      },
+      "execute": {
+        "name": "Execute tool",
+        "phase": "TOOL",
+        "body": "An allowed action is executed with a timeout, cancellation signal, and stable trace ID."
+      },
+      "checkpoint": {
+        "name": "Commit checkpoint",
+        "phase": "STATE",
+        "body": "The runtime records the outcome and a recoverable snapshot for subsequent execution."
+      }
+    }
+  },
+  "code": {
+    "copy": "Copy",
+    "copied": "Copied"
+  },
+  "article": {
+    "back": "Back to writing",
+    "agentRuntime": {
+      "metaTitle": "Building Reliable Agent Harnesses",
+      "metaDescription": "A sample essay introducing runtime boundaries for autonomous agents.",
+      "eyebrow": "AI SYSTEMS / FIELD NOTES / SAMPLE",
+      "title": "Building Reliable",
+      "titleEm": "Agent Harnesses.",
+      "lede": "The hard problem is not asking a model to act. It is designing the system that decides what happens next.",
+      "year": "2026",
+      "readTime": "8 MIN READ",
+      "kind": "ENGINEERING NOTES"
+    }
+  }
+}

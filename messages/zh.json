@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "title": "ELLIS / LAB — 工程化可靠智能",
+    "titleTemplate": "%s — ELLIS / LAB",
+    "description": "关于 AI Agent 运行时、决策可靠性与分布式系统的独立研究笔记。"
+  },
+  "nav": {
+    "home": "Ellis Lab 首页",
+    "research": "研究",
+    "writing": "写作",
+    "experiments": "实验",
+    "projects": "项目",
+    "main": "主导航",
+    "language": "语言"
+  },
+  "locale": {
+    "en": "English",
+    "zh": "中文"
+  },
+  "footer": {
+    "copyright": "© {year} ELLIS / LAB",
+    "tagline": "面向智能系统的独立研究。",
+    "note": "为好奇而设计，为清晰而建造。"
+  },
+  "home": {
+    "eyebrow": "独立人工智能系统研究",
+    "title": "工程化",
+    "titleEm": "可靠智能。",
+    "lede": "探索智能体底层的系统问题 — 从决策边界到可恢复的运行时。",
+    "exploreResearch": "浏览研究",
+    "readJournal": "阅读手记",
+    "est": "始创 2026  /  前沿田野笔记",
+    "scroll": "向下探索",
+    "mission": "使命",
+    "introTitle": "建造智能",
+    "introTitleLine": "使之可被",
+    "introTitleEm": "信任。",
+    "introP1": "AI 正从回答问题走向采取行动。真正有意思的工程问题，现在落在编排、安全边界、状态与可靠性上。",
+    "introP2": "这是一份公开探索这些系统的工作笔记。",
+    "aboutResearch": "关于这项研究",
+    "investigations": "精选课题",
+    "directions": "研究",
+    "directionsEm": "方向",
+    "allResearch": "全部研究",
+    "notebook": "实验室手记",
+    "ctaEyebrow": "用系统思考。公开建造。",
+    "ctaTitle": "想法是假说。",
+    "ctaTitleEm": "实验才是证据。",
+    "ctaBody": "技术随笔、架构拆解，以及对智能体系统的交互式探索。",
+    "enterExperiments": "进入实验"
+  },
+  "researchPage": {
+    "metaTitle": "研究",
+    "eyebrow": "研究 / 001",
+    "title": "研究",
+    "titleEm": "方向。",
+    "lede": "关于自主系统如何决策、执行、记忆与恢复的问题。",
+    "note": "这些方向代表正在进行的兴趣。只有已发表的条目会链到完成的文章；其余是研究主题，并不等同于已完成的工作。"
+  },
+  "writingPage": {
+    "metaTitle": "写作",
+    "eyebrow": "写作 / 002",
+    "title": "研究",
+    "titleEm": "手记。",
+    "lede": "工程笔记、设计取舍，以及正在检验的想法。",
+    "sampleTopic": "AI 智能体系统 · 示例文章",
+    "sampleTitle": "构建可靠的 Agent Harness",
+    "sampleDescription": "介绍智能体可靠性背后的运行时契约。",
+    "readTime": "8 分钟阅读"
+  },
+  "experimentsPage": {
+    "metaTitle": "实验",
+    "eyebrow": "实验 / 003",
+    "title": "让系统",
+    "titleEm": "可见。",
+    "lede": "探索一次智能体执行背后的状态迁移。第一个演示使用固定的示意轨迹，并未接入真实大模型。"
+  },
+  "projectsPage": {
+    "metaTitle": "项目",
+    "eyebrow": "项目 / 004",
+    "title": "进行中的",
+    "titleEm": "系统。",
+    "lede": "精选概念与实验 — 与已发布或已上线的软件明确区分。"
+  },
+  "researchItems": {
+    "agent-runtime": {
+      "topic": "智能体运行时",
+      "title": "构建可靠的 Agent Harness",
+      "description": "执行边界、检查点、工具编排，以及系统级故障恢复。",
+      "status": "田野笔记"
+    },
+    "decision-reliability": {
+      "topic": "决策系统",
+      "title": "自主智能体的决策可靠性",
+      "description": "校验器、选择性预测，以及可审计的允许 / 拒绝 / 人工决策。",
+      "status": "研究方向"
+    },
+    "tool-scheduling": {
+      "topic": "分布式执行",
+      "title": "并行工具调用，而不陷入混乱",
+      "description": "并发契约、取消、幂等与可观测性。",
+      "status": "研究方向"
+    }
+  },
+  "projectItems": {
+    "decisionkit": {
+      "label": "01 / 运行时",
+      "title": "DecisionKit",
+      "body": "智能体决策的可靠性层，带有显式策略门控和人工复核路径。",
+      "state": "概念 / 进行中"
+    },
+    "code-review": {
+      "label": "02 / 工具",
+      "title": "Code Review Agent",
+      "body": "研究有上下文的代码审查、工具执行，以及基于证据的发现。",
+      "state": "实验"
+    },
+    "trace-explorer": {
+      "label": "03 / 可视化",
+      "title": "Agent Trace Explorer",
+      "body": "用于探索智能体执行时间线与决策轨迹的交互概念。",
+      "state": "提案"
+    }
+  },
+  "trace": {
+    "head": "轨迹浏览器 / 模拟运行",
+    "stepOf": "步骤 {current} / {total}",
+    "event": "{phase} / 事件 {n}",
+    "previous": "上一步",
+    "next": "下一步",
+    "replay": "重放轨迹",
+    "steps": {
+      "receive": {
+        "name": "接收任务",
+        "phase": "输入",
+        "body": "请求进入智能体运行时，并带有任务标识与执行预算。"
+      },
+      "plan": {
+        "name": "规划执行",
+        "phase": "模型",
+        "body": "模型提出一次工具动作；这是提案，不是自动授权。"
+      },
+      "policy": {
+        "name": "策略检查",
+        "phase": "校验",
+        "body": "策略层根据动作与上下文返回允许、拒绝或转交人工。"
+      },
+      "execute": {
+        "name": "执行工具",
+        "phase": "工具",
+        "body": "被允许的动作在超时、取消信号和稳定的轨迹 ID 下执行。"
+      },
+      "checkpoint": {
+        "name": "提交检查点",
+        "phase": "状态",
+        "body": "运行时记录结果，以及可供后续执行恢复的快照。"
+      }
+    }
+  },
+  "code": {
+    "copy": "复制",
+    "copied": "已复制"
+  },
+  "article": {
+    "back": "返回写作",
+    "agentRuntime": {
+      "metaTitle": "构建可靠的 Agent Harness",
+      "metaDescription": "一篇介绍自主智能体运行时边界的示例文章。",
+      "eyebrow": "AI 系统 / 田野笔记 / 示例",
+      "title": "构建可靠的",
+      "titleEm": "Agent Harness。",
+      "lede": "真正困难的不是让模型去行动，而是设计决定下一步会发生什么的系统。",
+      "year": "2026",
+      "readTime": "8 分钟阅读",
+      "kind": "工程笔记"
+    }
+  }
+}

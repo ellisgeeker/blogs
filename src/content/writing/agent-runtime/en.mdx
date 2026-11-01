@@ -1,0 +1,58 @@
+## From model output to system behavior
+
+An agent runtime coordinates model decisions, tools, state, and recovery. The model can propose actions, but the runtime should own execution rules: authorization, retry limits, timeouts, and the boundaries of acceptable side effects.
+
+This distinction matters because a generated tool call is not the same thing as a trustworthy command.
+
+## A small execution contract
+
+One useful mental model separates _proposal_, _verification_, and _execution_:
+
+```text
+User request
+    ↓
+Model proposes an action
+    ↓
+Policy + contextual verification
+    ↓
+ALLOW / DENY / HUMAN
+    ↓
+Tool execution (only if allowed)
+    ↓
+Result + durable state / trace
+```
+
+The policy decision may be deterministic, model-assisted, or require a person. Whatever its mechanism, the final authorization boundary should remain explicit and observable.
+
+In code, the boundary can be as small as one function that every tool call must pass through:
+
+```ts title="runtime/authorize.ts" {6-8}
+type Decision = 'ALLOW' | 'DENY' | 'HUMAN';
+
+export async function runTool(call: ToolCall, ctx: Context) {
+  const decision: Decision = await policy.evaluate(call, ctx);
+
+  if (decision !== 'ALLOW') {
+    return trace.record(call, { decision, executed: false });
+  }
+
+  const result = await call.execute({ signal: ctx.signal, timeoutMs: 30_000 });
+  return trace.record(call, { decision, executed: true, result });
+}
+```
+
+## What a reliable harness needs
+
+- **Execution budgets** to bound time, tool calls, and repeated work.
+- **Idempotency controls** for tools that may be retried after failure.
+- **Cancellation and timeout propagation** across concurrent tool calls.
+- **Checkpoint and resume** with clearly documented recovery semantics.
+- **Traces and evidence** connecting proposed actions to observed outcomes.
+
+## Try the execution trace
+
+The [interactive trace explorer](/experiments) walks through one illustrative execution from task intake to checkpoint creation. It is a visualization, not a live autonomous system.
+
+## Open questions
+
+How should a verifier represent uncertainty? When is a human approval necessary? How can a system identify a repeated failure rather than merely retrying it? These questions deserve experiments and measurable criteria, not only confident-sounding prose.
